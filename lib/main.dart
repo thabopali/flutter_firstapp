@@ -26,11 +26,11 @@ void answerQuestion(){
           ),
           RaisedButton(
             child: Text('Answer 2'),
-            onPressed: null,
+            onPressed: answerQuestion,
           ),
           RaisedButton(
             child: Text('Answer 2'),
-            onPressed: null,
+            onPressed: answerQuestion,
           ),
         ]),
       ),
