@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 //void main() {
 //  runApp(MyApp());
@@ -9,7 +10,6 @@ import './question.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -19,22 +19,30 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  
+
   void _answerQuestion() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    
+
     print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your favourite color',
-      'What\'s your favourite animal?',
-      'What\'s your favourite music?',
-      'What\'s your favourite movie?',
+      {
+        'questionText': 'What\'s your favourite color',
+        'answers': ['Black', 'Red', 'Green', 'White']
+      },
+       {
+        'questionText': 'What\'s your favourite animal',
+        'answers': ['Lion', 'Tiger', 'Rabbit', 'Rhino']
+      },
+       {
+        'questionText': 'Who\'s your favourite instructor',
+        'answers': ['Max', 'Mosh', 'Rob', 'Jonas']
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -42,19 +50,12 @@ class _MyAppState extends State<MyApp> {
           title: Text('My First App'),
         ),
         body: Column(children: [
-          Question(questions[_questionIndex]),
-          RaisedButton(
-            child: Text('Answer 1'),
-            onPressed: _answerQuestion,
+          Question(
+            questions[_questionIndex]['questionText'],
           ),
-          RaisedButton(
-            child: Text('Answer 2'),
-            onPressed: () => print('Answer 2 chosen'),
-          ),
-          RaisedButton(
-            child: Text('Answer 3'),
-            onPressed: () => print('Answer 3 chosen'),
-          ),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
         ]),
       ),
     );
